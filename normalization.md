@@ -1,0 +1,1 @@
+All the 3NF principles were passed by my database design.
