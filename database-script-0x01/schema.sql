@@ -8,7 +8,7 @@ CREATE TABLE users (
     password_hash TEXT NOT NULL,
     phone VARCHAR(20),
     is_host BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -25,7 +25,7 @@ CREATE TABLE property (
     max_guests INTEGER,
     num_bedrooms INTEGER,
     num_bathrooms INTEGER,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -54,7 +54,7 @@ CREATE TABLE payments (
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    listing_id INTEGER REFERENCES listings(id) ON DELETE CASCADE,
+    property_id INTEGER REFERENCES property(id) ON DELETE CASCADE,
     reviewer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     rating INTEGER CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
