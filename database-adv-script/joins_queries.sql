@@ -9,7 +9,7 @@ ON b.user_id = u.id
 SELECT p.*, r.*
 FROM property p
 LEFT JOIN reviews r
-ON r.property_id = p.id
+ON p.id = r.property_id
 
 
 
