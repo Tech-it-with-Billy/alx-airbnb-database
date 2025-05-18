@@ -1,8 +1,22 @@
 -- Partitioning on the Booking table based on the start_date column
-SELECT b.*, COUNT(b.*) OVER (PARTITION BY DATE_TRUNC('month', b.start_date)) AS monthly_bookings,
-        RANK() OVER (PARTITION BY DATE_TRUNC('month', b.start_date) 
-        ORDER BY b.created_at) AS booking_rank_in_month
-FROM bookings b;
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    property_id INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE,
+    status VARCHAR(50),
+    created_at DATETIME,
+    -- other columns...
+
+    INDEX (start_date)
+)
+PARTITION BY RANGE (TO_DAYS(start_date)) (
+    PARTITION p_q1_2025 VALUES LESS THAN (TO_DAYS('2025-04-01')),
+    PARTITION p_q2_2025 VALUES LESS THAN (TO_DAYS('2025-07-01')),
+    PARTITION p_q3_2025 VALUES LESS THAN (TO_DAYS('2025-10-01')),
+    PARTITION p_q4_2025 VALUES LESS THAN (TO_DAYS('2026-01-01'))
+);
 
 
 
