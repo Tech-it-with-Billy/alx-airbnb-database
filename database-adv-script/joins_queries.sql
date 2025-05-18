@@ -9,7 +9,8 @@ ON b.user_id = u.id;
 SELECT p.*, r.*
 FROM properties p
 LEFT JOIN reviews r
-ON r.property_id = p.id;
+ON r.property_id = p.id
+ORDER BY 2 DESC;
 
 
 
