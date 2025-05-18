@@ -1,14 +1,9 @@
--- Partition for 2023
-CREATE TABLE bookings_2023 PARTITION OF bookings
-FOR VALUES FROM ('2023-01-01') TO ('2024-01-01');
+-- Partitioning on the Booking table based on the start_date column
+SELECT b.*, COUNT(b.*) OVER (PARTITION BY DATE_TRUNC('month', b.start_date)) AS monthly_bookings,
+        RANK() OVER (PARTITION BY DATE_TRUNC('month', b.start_date) 
+        ORDER BY b.created_at) AS booking_rank_in_month
+FROM bookings b;
 
--- Partition for 2024
-CREATE TABLE bookings_2024 PARTITION OF bookings
-FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
-
--- Partition for 2025
-CREATE TABLE bookings_2025 PARTITION OF bookings
-FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
 
 
 -- Query to fetch bookings from a specific year range
