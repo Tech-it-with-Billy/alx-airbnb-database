@@ -9,7 +9,9 @@ FROM(SELECT u.name, COUNT(b.*) number_of_bookings
 
 
 -- Rank properties based on the total number of bookings they have received.
-SELECT property_id, number_of_bookings, RANK() OVER (ORDER BY number_of_bookings DESC) AS booking_rank
+SELECT ROW_NUMBER() OVER (ORDER BY number_of_bookings DESC) AS row_number, 
+        property_id, number_of_bookings, 
+        RANK() OVER (ORDER BY number_of_bookings DESC) AS booking_rank
 FROM(SELECT property_id, COUNT(*) AS number_of_bookings
     FROM bookings
     GROUP BY 1) t2;
