@@ -10,7 +10,7 @@ WHERE av_rating > 4;
 
 -- Users who have made more than 3 bookings.
 SELECT name, number_of_bookings
-FROM(SELECT u.name, COUNT(b.*) number_of_bookings
+FROM(SELECT u.name, COUNT(b.*) AS number_of_bookings
     FROM bookings b
     INNER JOIN users u
     ON u.id = b.user_id
