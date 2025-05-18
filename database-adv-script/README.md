@@ -1,4 +1,4 @@
-These scripts involve:
+These scripts contain:
 ####  Complex Queries with Joins
 1. Retrieve all bookings and the respective users who made those bookings.
 2. Retrieve all properties and their reviews, including properties that have no reviews.
@@ -7,3 +7,8 @@ These scripts involve:
 ####  Practicing Subqueries
 1. All properties where the average rating is greater than 4.0.
 2. Finding users who have made more than 3 bookings.
+
+#### Aggregations and Window Functions
+1. Total number of bookings made by each user.
+2. Rank properties based on the total number of bookings they have received.
+

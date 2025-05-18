@@ -2,14 +2,14 @@
 SELECT u.*, b.*
 FROM users u
 INNER JOIN bookings b
-ON b.user_id = u.id
+ON b.user_id = u.id;
 
 
 -- All properties and their reviews, including properties that have no reviews.
 SELECT p.*, r.*
 FROM properties p
 LEFT JOIN reviews r
-ON r.property_id = p.id
+ON r.property_id = p.id;
 
 
 
@@ -17,4 +17,4 @@ ON r.property_id = p.id
 SELECT u.*, b.*
 FROM users u
 FULL OUTER JOIN bookings b
-ON b.user_id = u.id
+ON b.user_id = u.id;
