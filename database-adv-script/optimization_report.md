@@ -1,0 +1,3 @@
+#### Optimize Complex Queries
+
+To optimize the query retrieving bookings with user, property, and payment details, we refactored it to improve performance. This involved selecting only essential columns to reduce data load, using clear table aliases, and minimizing the number of joined tables. We replaced a direct `LEFT JOIN` on the `payments` table with a subquery to include only relevant fields. Additionally, we ensured that key columns used in `JOIN` conditions (`user_id`, `property_id`, and `booking_id`) are indexed to speed up lookups. These adjustments help reduce execution time, memory usage, and overall query complexity, making the data retrieval process more efficient.
