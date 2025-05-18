@@ -6,7 +6,7 @@ ON b.user_id = u.id
 
 
 -- All properties and their reviews, including properties that have no reviews.
-SELECT p.name, r.comment, r.rating
+SELECT p.*, r.*
 FROM properties p
 LEFT JOIN reviews r
 ON r.property_id = p.id
