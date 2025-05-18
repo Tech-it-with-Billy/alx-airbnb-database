@@ -4,7 +4,8 @@ SELECT b.*, u.*, p.*, pay.*
 FROM bookings b
 INNER JOIN users u ON b.user_id = u.id
 INNER JOIN properties p ON b.property_id = p.id
-LEFT JOIN payments pay ON b.id = pay.booking_id;
+LEFT JOIN payments pay ON b.id = pay.booking_id
+WHERE b.status = 'confirmed' AND (pay.status = 'successful' OR pay.status IS NULL);
 
 
 
@@ -14,7 +15,9 @@ SELECT b.*, u.*, p.*, pay.*
 FROM bookings b
 INNER JOIN users u ON b.user_id = u.id
 INNER JOIN properties p ON b.property_id = p.id
-LEFT JOIN payments pay ON b.id = pay.booking_id;
+LEFT JOIN payments pay ON b.id = pay.booking_id
+WHERE b.status = 'confirmed' AND (pay.status = 'successful' OR pay.status IS NULL);
+
 
 
 -- Refactor the query to reduce execution time.
@@ -28,4 +31,5 @@ INNER JOIN properties p ON b.property_id = p.id
 LEFT JOIN (
     SELECT booking_id, amount, status
     FROM payments) pay 
-ON b.id = pay.booking_id;
+ON b.id = pay.booking_id
+WHERE b.status = 'confirmed' AND (pay.status = 'successful' OR pay.status IS NULL);
